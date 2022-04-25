@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>天气情况统计</title>
+        <style>
+            #main{
+                width: 90%;
+                height: 40rem;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main"></div>
+    </body>
+</html>
+<script src="echarts.js"></script>
+<script>
+    function randomColor() {
+        var color = "#";
+        for (var i = 0; i < 6; i++) color+=parseInt(Math.random() * 16).toString(16);
+        return color;
+    }
+    var chartDom = document.getElementById('main');
+    var myChart = echarts.init(chartDom);
+    var option;
+    let color = randomColor()
+    option = {
+        xAxis: {
+            type: 'category',
+            data: ['1949-10','1950-1','1950-10','1951-7','1951-12']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+        {
+            data: [35.0,32.0,35.0,45.0,23.0],
+            type: 'line',
+            // smooth:true,
+            lineStyle:{
+                color:color
+            },
+            itemStyle:{
+                color:color
+            }
+        }
+        ]
+    };
+
+    option && myChart.setOption(option);
+
+
+</script>
