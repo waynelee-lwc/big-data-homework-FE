@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <title>单词频率统计</title>
+        <style>
+            #main{
+                width: 90%;
+                height: 40rem;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main"></div>
+    </body>
+</html>
+<script src="echarts.js"></script>
+<script>
+    function randomColor() {
+        var color = "#";
+        for (var i = 0; i < 6; i++) color+=parseInt(Math.random() * 16).toString(16);
+        return color;
+    }
+    let data = [1,1,2,2,1,2,1,1,1,1,1]
+    function data2seriesData(){
+        let res = []
+        for(let i = 0;i < data.length;i++){
+            res[i] = {
+                value:data[i],
+                itemStyle:{
+                    color:randomColor()
+                }
+            }
+        }
+        return res
+    }
+    var myChart = echarts.init(document.getElementById('main'));
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '单词频率统计',
+            left: 'center',
+            top: 'bottom',
+            show: 'false'
+        },
+        tooltip: {},
+        legend: {
+            data:['单词出现频率']
+        },
+        xAxis: {
+            "axisLabel":{interval:0},
+            data: ["china","hadoop","hello","lala","mimi","mingbai","nihao","weiwei","xiaoguo","xingfen","zhongguo"],
+            
+        },
+        yAxis: {
+            interval:1
+        },
+        color:['red'],
+        series: [{
+            name: '单词出现频率',
+            type: 'bar',
+            data: data2seriesData()
+        }],
+        color:["blue"],
+        
+    };
+    myChart.setOption(option);
+
+</script>
